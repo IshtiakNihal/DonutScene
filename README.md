@@ -2,22 +2,26 @@
 
 A 3D donut modeled in Blender and brought to life with real-time animations in the Godot Engine.
 
-![Blender render of the donut](screenshots/blender_donut.png)  
+## The Modeling Process (Blender)
+
+The donut model was fully created from scratch in Blender 5.1. It features detailed procedural geometry for the bread base and the icing, topped off with organically placed candy sprinkles. We utilized advanced node setups to generate hyper-realistic texturing before baking the materials down seamlessly into color, roughness, and normal maps.
+
 ![Blender Workspace](screenshots/blender_work.png)
+*A look inside the Blender viewport showing the modeling and node structure.*
 
-## What This Project Is
+![Blender Render](screenshots/blender_donut.png)
+*The final beauty render produced natively in Blender's rendering engine.*
 
-A realistic donut with icing and sprinkles. Originally modeled in Blender 5.1 and exported to Godot 4.6. The Godot scene features:
+## The Real-Time Scene (Godot)
 
-- A camera orbiting around the donut
-- Donut hovering and slowly rotating
-- Realistic PBR materials using baked textures from Blender 
-- A procedural sky environment for dynamic reflections
-- Cinematic 4-point lighting
+After exporting the donut asset as a `.glb` file, we imported it into Godot 4.6 to create a fully dynamic, real-time 3D scene. The PBR materials were accurately reassembled via GDScript—incorporating subsurface scattering for the bread and clearcoat gloss for the icing. We finalized the environment with cinematic 4-point lighting and a procedural sky.
+
+![Godot Viewport](screenshots/Godot_donut.png)  
+*The final assembled scene running real-time inside the Godot Engine.*
 
 ## Animation Preview
 
-Click the video link below to see the final animation running in Godot:
+Click the video link below to see the final orbiting animation running live in Godot:
 [🎥 Watch the Final Animation (Godot)](screenshots/final_animation_godot.mp4)
 
 ## MCP Servers Used
@@ -26,11 +30,6 @@ This project was built aggressively using the Model Context Protocol (MCP) to al
 
 - **Blender MCP Server**: [https://github.com/ahujasid/blender-mcp](https://github.com/ahujasid/blender-mcp) used for manipulating 3D assets and baking PBR textures.
 - **Godot MCP Server**: [https://github.com/tugcantopaloglu/godot-mcp](https://github.com/tugcantopaloglu/godot-mcp) used for dynamically creating scenes, adding lighting, setting up the camera rig, and creating animations via GDScript.
-
-## How It Was Built
-
-- **Blender Workflow:** The `.glb` file was modeled, the procedural materials created, and textures (Base Color, Roughness, Normal) baked for export through automated scripting via MCP.
-- **Godot Workflow:** The 3D scene, lighting, camera rig, and PBR environments were populated via GDScript using the Godot MCP server. The logic handles the real-time animation directly within the internal game engine.
 
 ## Guide: How to Run This Project
 

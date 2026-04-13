@@ -1,0 +1,15 @@
+# Godot-specific ignores
+.godot/
+*.uid
+*.import
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Blender backups
+*.blend1
+*.blend2
+*.blend3
+*.blend4
+*.blend5

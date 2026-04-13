@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://donut.glb" id="1_donut"]
+[ext_resource type="Script" path="res://main.gd" id="2_script"]
+
+[sub_resource type="ProceduralSkyMaterial" id="1_sky_mat"]
+sky_top_color = Color(0.18, 0.20, 0.35, 1)
+sky_horizon_color = Color(0.55, 0.50, 0.60, 1)
+sky_curve = 0.08
+ground_bottom_color = Color(0.06, 0.05, 0.08, 1)
+ground_horizon_color = Color(0.30, 0.25, 0.35, 1)
+ground_curve = 0.02
+sun_angle_max = 30.0
+sun_curve = 0.15
+
+[sub_resource type="Sky" id="2_sky"]
+sky_material = SubResource("1_sky_mat")
+radiance_size = 3
+
+[sub_resource type="Environment" id="3_env"]
+background_mode = 2
+sky = SubResource("2_sky")
+ambient_light_source = 2
+ambient_light_color = Color(0.50, 0.45, 0.65, 1)
+ambient_light_energy = 0.3
+reflected_light_source = 1
+tonemap_mode = 2
+tonemap_exposure = 1.1
+tonemap_white = 6.0
+glow_enabled = true
+glow_intensity = 0.6
+glow_bloom = 0.08
+ssao_enabled = true
+ssao_radius = 1.5
+ssao_intensity = 2.0
+ssil_enabled = true
+ssil_radius = 2.0
+ssil_intensity = 1.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("2_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("3_env")
+
+[node name="Donut" parent="." instance=ExtResource("1_donut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.92, 0.39, 0, -0.39, 0.92, 0, 0.75, 3.2)
+fov = 44.0
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819, -0.368, 0.439, 0, 0.766, 0.643, -0.574, -0.527, 0.627, 0, 3, 0)
+light_color = Color(1.0, 0.93, 0.82, 1)
+light_energy = 3.2
+shadow_enabled = true
+
+[node name="FillLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 1.4, 1.2)
+light_color = Color(0.4, 0.55, 1.0, 1)
+light_energy = 2.5
+omni_range = 10.0
+
+[node name="RimLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 0.9, -1.8)
+light_color = Color(1.0, 0.68, 0.3, 1)
+light_energy = 2.0
+omni_range = 8.0
+
+[node name="UnderGlow" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0.4)
+light_color = Color(0.95, 0.55, 0.25, 1)
+light_energy = 0.8
+omni_range = 5.0
